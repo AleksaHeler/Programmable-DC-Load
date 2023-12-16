@@ -7,6 +7,7 @@
 * TODO: adapt for variant with other external ADCs and DACs
 * TODO: update LCD screen to have more info and cycle between some things
 * TODO: add timer so that we have precise 10ms cycles (and measure execution time just for reference)
+* TODO: add a mode for batteries, to set the cut-off voltage when to stop current
 */
 
 /* Include our helper files */
