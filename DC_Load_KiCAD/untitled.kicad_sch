@@ -1,0 +1,15 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "ad7b5942-f208-4f3c-94c5-2ffca3ff9cfc")
+	(paper "A4")
+	(title_block
+		(title "DC Programmable Load")
+		(date "2024-04-29")
+		(rev "v2.0")
+		(company "Aleksa Heler")
+		(comment 1 "aleksaheler@gmail.com")
+	)
+	(lib_symbols)
+)
