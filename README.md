@@ -1,7 +1,10 @@
-# Electronic_DC_Load
+# Programmable DC Load
 
-Flexible programmable DC constant current/power load using Arduin Nano & custom PCB
+Flexible programmable DC constant current/power load using Arduin Nano and a custom PCB.
 
 Following some ideas from [this YouTube playlist](https://www.youtube.com/playlist?list=PLUMG8JNssPPzbr4LydbTcBrhoPlemu5Dt) from [Scullcom Hobby Electronics](https://www.youtube.com/@scullcomhobbyelectronics1702).
 
-TODO: post images and design architecture, PCB and finished product!
+![](pics/schm.png)
+![](pics/pcb_editor.png)
+![](pics/pcb_3d_view.png)
+![](pics/pcbs.jpg)
