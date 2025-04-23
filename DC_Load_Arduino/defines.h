@@ -5,32 +5,54 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+/****************************************************************************************/
+/* Logic defines                                                                        */
+/****************************************************************************************/
+
 /* Define maximum values */
-#define LOAD_MAX_CURRENT (3.0f) /* A */
-#define LOAD_MAX_POWER 40 /* W */
+#define LOAD_MAX_VOLTAGE (28.5f)   /* V */
+#define LOAD_MAX_CURRENT (2.0f)    /* A */
+#define LOAD_MAX_POWER 20          /* W */
 
-/* ADC/DAC */
-#define PCF8591_I2C_ADDRESS 0x48
+/****************************************************************************************/
+/* Hardware/pin defines                                                                 */
+/****************************************************************************************/
 
-/* Encoder */
-#define ENCOD_PIN_IN1 9
-#define ENCOD_PIN_IN2 10
+/* I2C: ADC/DAC, OLED display  */
+#define DAC_MCP4716_I2C_ADDRESS 0x60  /* Set current via precise DAC */
+#define ADC_INA219_I2C_ADDRESS 0x40   /* Measure current via shunt resistor (A0 and A1 pin of IC are connected to GND)*/
+#define OLED_I2C_ADDRESS 0x3C         /* Typical 64x128 OLED display */
+
+/* Encoder pins */
+#define ENCODER_PIN_A 7
+#define ENCODER_PIN_B 6
+#define ENCODER_SWITCH 5
 
 /* Analog inputs */
-#define CURR_READ_PIN A0
-#define VOLT_READ_PIN A1
-#define TEMP_READ_PIN A2
+#define INPUT_VOLTAGE_PIN A0
+#define NTC_NUM 2                    /* How many status NTCs we have */
+const int NTC_PINS[NTC_NUM] = {      /* NTC pins */
+  A2,  /* NTC_PCB_TEMP_PIN */
+  A1   /* NTC_EXT_TEMP_PIN */
+};
 
 /* Digital outputs */
-#define FAN_PIN 13
+#define FAN_PIN 3
+#define LED_NUM 1                      /* How many status LEDs we have */
+const int LED_PINS[LED_NUM] = { 2 };   /* Status LED pins */
 
 /* Define encoder positive direction: right = 1, left = -1 */
 #define ENCODER_DIRECTION (-1)
 /* Define encoder step value (0-100%) */
 #define ENCODER_STEP (1)
 
+/* Input voltage divider values */
+#define INPUT_VOLTAGE_R1 47 /* Resistor from Vin to midpoint (kOhm) */
+#define INPUT_VOLTAGE_R2 10 /* Resistor from midpoint to ground (kOhm) */
 
-/* LCD pins (not using the I2C) */
-const int rs = 7, en = 6, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+/****************************************************************************************/
+/* Other defines                                                                        */
+/****************************************************************************************/
+
 
 #endif /* DEFINES_H */

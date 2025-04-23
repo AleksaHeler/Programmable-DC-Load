@@ -11,34 +11,47 @@
 */
 
 /* Include our helper files */
-#include "defines.h"
-#include "inputs.h"
-#include "rotary_encoder.h"
-#include "outputs.h"
-#include "lcd_display.h"
+#include "defines.h"   /* Global defines */
+#include "sensing.h"   /* Handle sensing of current and voltage */
+#include "ntc.h"       /* Handle NTC temperature sensors */
+#include "encoder.h"   /* Handle rotary encoder */
+#include "dac.h"       /* Handle DAC output */
+#include "leds.h"      /* Handle status LEDs */
+#include "fan.h"       /* Handle fan */
+#include "oled.h"      /* Handle OLED display */
+
 
 /* First setup all used helper modules */
 void setup() 
 {
-  // inputs_setup(); /* analog inputs: current, voltage, temperature */
-  // rotary_encoder_setup(); /* well, rotary encoder input */
-  // lcd_setup(); /* 16x2 LCD */
-  // outputs_setup(); /* DAC current setting output */
-  pinMode(2, OUTPUT);
+  Serial.begin(9600); /* Start serial communication for debugging */
+
+  sensing_setup(); /* Sensing of current and voltage */
+  ntc_setup();     /* NTC temperature input */
+  encoder_setup(); /* Encoder input */
+  dac_setup();     /* DAC output for current */
+  leds_setup();    /* LED status output */
+  fan_setup();     /* Fan driver output */
+  oled_setup();    /* OLED display output */
+
+  leds_set_led(0, led_blink_slow); /* Set LED to blink slowly */
 }
 
 /* During loop, just call helper function to handle all the functionality every 10ms */
 void loop() 
 {
-  delay(500);
-  digitalWrite(2, HIGH);
-  delay(500);
-  digitalWrite(2, LOW);
-  // inputs_handle();
-  // rotary_encoder_handle();
-  // lcd_handle();
-  // outputs_handle();
+  sensing_handle(); /* Read voltage and current */
+  ntc_handle();     /* Read NTC temperatures */
+  encoder_handle(); /* Read encoder input */
+  dac_handle();     /* Handle DAC output */
+  leds_handle();    /* Handle LED states and blinking */
+  fan_handle();     /* Handle fan driver */
+  oled_handle();    /* Handle OLED display */
 
-  /* No need to be super precise here, but we can just wait for some time for stability */
-  delay(10);
+  // dac_set_output(0.2); // Set DAC to x volts
+  // fan_set_pwm(90); // Set fan to x%
+  // ntc_temperatures[0]  // PCB temperature
+  // ntc_temperatures[1]  // External temperature
+
+  delay(1);
 }
