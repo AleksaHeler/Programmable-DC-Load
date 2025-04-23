@@ -20,19 +20,24 @@
 /* First setup all used helper modules */
 void setup() 
 {
-  inputs_setup(); /* analog inputs: current, voltage, temperature */
-  rotary_encoder_setup(); /* well, rotary encoder input */
-  lcd_setup(); /* 16x2 LCD */
-  outputs_setup(); /* DAC current setting output */
+  // inputs_setup(); /* analog inputs: current, voltage, temperature */
+  // rotary_encoder_setup(); /* well, rotary encoder input */
+  // lcd_setup(); /* 16x2 LCD */
+  // outputs_setup(); /* DAC current setting output */
+  pinMode(2, OUTPUT);
 }
 
 /* During loop, just call helper function to handle all the functionality every 10ms */
 void loop() 
 {
-  inputs_handle();
-  rotary_encoder_handle();
-  lcd_handle();
-  outputs_handle();
+  delay(500);
+  digitalWrite(2, HIGH);
+  delay(500);
+  digitalWrite(2, LOW);
+  // inputs_handle();
+  // rotary_encoder_handle();
+  // lcd_handle();
+  // outputs_handle();
 
   /* No need to be super precise here, but we can just wait for some time for stability */
   delay(10);
