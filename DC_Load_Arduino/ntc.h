@@ -15,159 +15,30 @@
 /* Measured NTC temperatures */
 float ntc_temperatures[NTC_NUM] = { 0.0f, 0.0f };
 
-/* NTC lookup */
+/* NTC lookup stored in program memory (not dynamic) */
 #define NTC_LOOKUP_TABLE_SIZE 148
-float ntc_lookup_table[NTC_LOOKUP_TABLE_SIZE][2] = {
-  /* ADC    °C */
-  {  75,   -23 },
-  {  79,   -22 },
-  {  84,   -21 },
-  {  89,   -20 },
-  {  94,   -19 },
-  {  99,   -18 },
-  { 105,   -17 },
-  { 110,   -16 },
-  { 116,   -15 },
-  { 123,   -14 },
-  { 129,   -13 },
-  { 136,   -12 },
-  { 143,   -11 },
-  { 150,   -10 },
-  { 157,   -9  },
-  { 165,   -8  },
-  { 173,   -7  },
-  { 181,   -6  },
-  { 189,   -5  },
-  { 198,   -4  },
-  { 207,   -3  },
-  { 216,   -2  },
-  { 225,   -1  },
-  { 235,    0  },
-  { 244,    1  },
-  { 254,    2  },
-  { 264,    3  },
-  { 274,    4  },
-  { 285,    5  },
-  { 295,    6  },
-  { 306,    7  },
-  { 317,    8  },
-  { 328,    9  },
-  { 339,   10  },
-  { 350,   11  },
-  { 362,   12  },
-  { 373,   13  },
-  { 384,   14  },
-  { 396,   15  },
-  { 408,   16  },
-  { 419,   17  },
-  { 431,   18  },
-  { 442,   19  },
-  { 454,   20  },
-  { 466,   21  },
-  { 477,   22  },
-  { 489,   23  },
-  { 500,   24  },
-  { 512,   25  },
-  { 523,   26  },
-  { 534,   27  },
-  { 545,   28  },
-  { 556,   29  },
-  { 567,   30  },
-  { 578,   31  },
-  { 589,   32  },
-  { 599,   33  },
-  { 610,   34  },
-  { 620,   35  },
-  { 630,   36  },
-  { 640,   37  },
-  { 650,   38  },
-  { 659,   39  },
-  { 669,   40  },
-  { 678,   41  },
-  { 687,   42  },
-  { 696,   43  },
-  { 704,   44  },
-  { 713,   45  },
-  { 729,   46  },
-  { 737,   47  },
-  { 737,   48  },
-  { 745,   49  },
-  { 753,   50  },
-  { 760,   51  },
-  { 768,   52  },
-  { 775,   53  },
-  { 782,   54  },
-  { 788,   55  },
-  { 795,   56  },
-  { 801,   57  },
-  { 807,   58  },
-  { 813,   59  },
-  { 819,   60  },
-  { 825,   61  },
-  { 831,   62  },
-  { 836,   63  },
-  { 841,   64  },
-  { 846,   65  },
-  { 851,   66  },
-  { 856,   67  },
-  { 861,   68  },
-  { 865,   69  },
-  { 870,   70  },
-  { 874,   71  },
-  { 878,   72  },
-  { 882,   73  },
-  { 886,   74  },
-  { 890,   75  },
-  { 894,   76  },
-  { 898,   77  },
-  { 901,   78  },
-  { 904,   79  },
-  { 908,   80  },
-  { 911,   81  },
-  { 914,   82  },
-  { 917,   83  },
-  { 920,   84  },
-  { 923,   85  },
-  { 925,   86  },
-  { 928,   87  },
-  { 931,   88  },
-  { 933,   89  },
-  { 936,   90  },
-  { 938,   91  },
-  { 940,   92  },
-  { 943,   93  },
-  { 945,   94  },
-  { 947,   95  },
-  { 949,   96  },
-  { 951,   97  },
-  { 953,   98  },
-  { 954,   99  },
-  { 956,  100  },
-  { 958,  101  },
-  { 960,  102  },
-  { 961,  103  },
-  { 963,  104  },
-  { 965,  105  },
-  { 966,  106  },
-  { 967,  107  },
-  { 969,  108  },
-  { 970,  109  },
-  { 972,  110  },
-  { 973,  111  },
-  { 974,  112  },
-  { 975,  113  },
-  { 977,  114  },
-  { 978,  115  },
-  { 979,  116  },
-  { 980,  117  },
-  { 981,  118  },
-  { 982,  119  },
-  { 983,  120  },
-  { 984,  121  },
-  { 985,  122  },
-  { 986,  123  },
-  { 987,  124  }
+const PROGMEM uint16_t ntc_lookup_table_adc[NTC_LOOKUP_TABLE_SIZE] = {
+  75, 79, 84, 89, 94, 99, 105, 110, 116, 123, 129, 136, 143, 150, 157, 165, 173, 181, 189, 198, 207, 216, 225, 
+  235, 244, 254, 264, 274, 285, 295, 306, 317, 328, 339, 350, 362, 373, 384, 396, 408, 419, 431, 442, 454, 466, 
+  477, 489, 500, 512, 523, 534, 545, 556, 567, 578, 589, 599, 610, 620, 630, 640, 650, 659, 669, 678, 687, 696, 
+  704, 713, 729, 737, 737, 745, 753, 760, 768, 775, 782, 788, 795, 801, 807, 813, 819, 825, 831, 836, 841, 846, 
+  851, 856, 861, 865, 870, 874, 878, 882, 886, 890, 894, 898, 901, 904, 908, 911, 914, 917, 920, 923, 925, 928, 
+  931, 933, 936, 938, 940, 943, 945, 947, 949, 951, 953, 954, 956, 958, 960, 961, 963, 965, 966, 967, 969, 970, 
+  972, 973, 974, 975, 977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987
 };
+
+const PROGMEM int16_t ntc_lookup_table_temp[NTC_LOOKUP_TABLE_SIZE] = {
+  -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1,  0,  
+  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 
+  29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 
+  57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 
+  85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 
+  110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124
+};
+
+/* Accessing the lookup table from program memory with memory offset calculation */
+#define GET_LOOKUP_TABLE_ADC(i)   uint16_t(pgm_read_word_near(ntc_lookup_table_adc + (i)))
+#define GET_LOOKUP_TABLE_TEMP(i)  int16_t(pgm_read_word_near(ntc_lookup_table_temp + (i)))
 
 /* Prototypes for all used functions */
 void ntc_setup();
@@ -192,19 +63,19 @@ void ntc_handle()
     
     /* Check if we are in the range of the lookup table */
     /* Value below the lowest raw ADC? */
-    if(adc_value < ntc_lookup_table[0][0]){
-      ntc_temperatures[i] = ntc_lookup_table[0][1];
+    if(adc_value < GET_LOOKUP_TABLE_ADC(0)){
+      ntc_temperatures[i] = float(GET_LOOKUP_TABLE_TEMP(0));
     } 
     /* Value above the highest raw ADC? */
-    else if(adc_value > ntc_lookup_table[(NTC_LOOKUP_TABLE_SIZE-1)][0]){
-      ntc_temperatures[i] = ntc_lookup_table[(NTC_LOOKUP_TABLE_SIZE-1)][1];
+    else if(adc_value > GET_LOOKUP_TABLE_ADC(NTC_LOOKUP_TABLE_SIZE - 1)){
+      ntc_temperatures[i] = float(GET_LOOKUP_TABLE_TEMP(NTC_LOOKUP_TABLE_SIZE - 1));
     } 
     else {
       /* Interpolate the temperature */
       for(uint8_t j = 0; j < (NTC_LOOKUP_TABLE_SIZE-1); j++){
-        if(adc_value >= ntc_lookup_table[j][0] && adc_value <= ntc_lookup_table[j+1][0]){
-          float slope = (ntc_lookup_table[j+1][1] - ntc_lookup_table[j][1]) / (ntc_lookup_table[j+1][0] - ntc_lookup_table[j][0]);
-          ntc_temperatures[i] = slope * (adc_value - ntc_lookup_table[j][0]) + ntc_lookup_table[j][1];
+        if(adc_value >= GET_LOOKUP_TABLE_ADC(j) && adc_value <= GET_LOOKUP_TABLE_ADC(j + 1)){
+          float slope = float( GET_LOOKUP_TABLE_TEMP(j + 1) - GET_LOOKUP_TABLE_TEMP(j) ) / ( float( GET_LOOKUP_TABLE_ADC(j + 1) - GET_LOOKUP_TABLE_ADC(j) ) );
+          ntc_temperatures[i] = slope * (adc_value - GET_LOOKUP_TABLE_ADC(j)) + float(GET_LOOKUP_TABLE_TEMP(j));
           break;
         }
       }

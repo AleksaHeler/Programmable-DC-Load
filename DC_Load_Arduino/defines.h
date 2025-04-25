@@ -22,6 +22,7 @@
 #define DAC_MCP4716_I2C_ADDRESS 0x60  /* Set current via precise DAC */
 #define ADC_INA219_I2C_ADDRESS 0x40   /* Measure current via shunt resistor (A0 and A1 pin of IC are connected to GND)*/
 #define OLED_I2C_ADDRESS 0x3C         /* Typical 64x128 OLED display */
+#define OLED_RESET -1                 /* Reset pin # (or -1 if sharing Arduino reset pin) */
 
 /* Encoder pins */
 #define ENCODER_PIN_A 7
@@ -49,6 +50,12 @@ const int LED_PINS[LED_NUM] = { 2 };   /* Status LED pins */
 /* Input voltage divider values */
 #define INPUT_VOLTAGE_R1 47 /* Resistor from Vin to midpoint (kOhm) */
 #define INPUT_VOLTAGE_R2 10 /* Resistor from midpoint to ground (kOhm) */
+#define INPUT_VOLTAGE_FACTOR 1.015 /* Voltage is multiplied by this number to offset any resitor deviations */
+
+/* Output DAC scaling factor, used to convert it's output voltage to amps */
+#define DAC_OUTPUT_FACTOR 1.13f /* DAC output voltage is multiplied by this number to offset any resitor deviations */
+#define DAC_VREF 5.0f /* DAC reference voltage, 5V bus */
+#define INPUT_CURRENT_FACTOR 1.034f /* Current is multiplied by this number to offset any resitor deviations */
 
 /****************************************************************************************/
 /* Other defines                                                                        */

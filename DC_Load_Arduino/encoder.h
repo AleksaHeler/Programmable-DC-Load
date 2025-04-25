@@ -58,8 +58,6 @@ void encoder_handle()
   // Print position if changed
   static int lastReportedPosition = 0;
   if (encoderPosition != lastReportedPosition) {
-    Serial.print("Position: ");
-    Serial.println(encoderPosition);
     lastReportedPosition = encoderPosition;
   }
 
