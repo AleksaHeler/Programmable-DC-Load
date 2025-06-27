@@ -4,7 +4,17 @@ Flexible programmable DC constant current/power load using Arduin Nano and a cus
 
 Following some ideas from [this YouTube playlist](https://www.youtube.com/playlist?list=PLUMG8JNssPPzbr4LydbTcBrhoPlemu5Dt) from [Scullcom Hobby Electronics](https://www.youtube.com/@scullcomhobbyelectronics1702).
 
+## PCB design and schematic
 
+![](pics/schm.png)
+![](pics/pcb_editor.png)
+![](pics/pcb_3d_view.png)
+![](pics/pcbs.jpg)
+
+## Finished device in enclosure
+
+![](pics/assembled_device.jpg)
+![](pics/front_panel_printed.jpg)
 
 ## Programming the ATmega328P
 
@@ -46,10 +56,3 @@ To burn the bootloader, we will also be using Arduino as ISP, and in Arduino sof
 ### Flashing the program
 
 ???
-
-## PCB design and schematic
-
-![](pics/schm.png)
-![](pics/pcb_editor.png)
-![](pics/pcb_3d_view.png)
-![](pics/pcbs.jpg)
